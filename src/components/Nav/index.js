@@ -1,22 +1,23 @@
 import React from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
 
     const categories = [
         {
-            name: 'Commercial',
+            name: 'commercial',
             description: "Photos of grocery stores, food trucks, and other commercial projects"
         },
         {
-            name: 'Portraits',
+            name: 'portraits',
             description: "Portraits of people in my life"
         },
         {
-            name: 'Food',
+            name: 'food',
             description: "Delicious delicacies"
         },
         {
-            name: 'Landscape',
+            name: 'landscape',
             description: "Fields, farmhouses, waterfalls, and the beauty of nature"
         }
     ];
@@ -25,7 +26,7 @@ function Nav() {
         console.log(`${name} clicked`);
     }
 
-
+    
     return (
         <header>
             <h2>
@@ -49,7 +50,7 @@ function Nav() {
                             key={category.name}
                         >
                             <span onClick={categorySelected(category.name)} >
-                                {category.name}
+                                {capitalizeFirstLetter(category.name)}
                             </span>
                         </li>
                     ))}
