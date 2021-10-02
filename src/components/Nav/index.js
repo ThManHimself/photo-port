@@ -31,7 +31,10 @@ function Nav() {
         <header>
             <h2>
                 <a data-testid="link" href="/">
-                    <span role="img" aria-label="camera"> 📸</span> Oh Snap!
+                    <span
+                        role="img"
+                        aria-label="camera"
+                    > 📸</span> Oh Snap!
                 </a>
             </h2>
             <nav>
@@ -49,15 +52,15 @@ function Nav() {
                             className="mx-1"
                             key={category.name}
                         >
-                            <span onClick={categorySelected(category.name)} >
-                                {capitalizeFirstLetter(category.name)}
+                            <span onClick={ categorySelected(category.name) } >
+                                { capitalizeFirstLetter(category.name) }
                             </span>
                         </li>
                     ))}
                 </ul>
             </nav>
         </header>
-    )
+    );
 }
 
 export default Nav;
