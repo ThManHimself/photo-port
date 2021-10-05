@@ -47,7 +47,7 @@ exports[`Contact component matches snapshot 1`] = `
         />
       </div>
       <button
-        data-testid="submitBtn"
+        data-testid="button"
         type="submit"
       >
         Submit

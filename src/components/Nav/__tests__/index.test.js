@@ -1,5 +1,6 @@
+
 import React from "react";
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Nav from '..';
 
@@ -26,7 +27,7 @@ describe('Nav component', () => {
     });
 
     // snapshot test
-    it('matches snapshot', () => {
+    it('matches snapshot DOM node structure', () => {
         const { asFragment } = render(<Nav 
             categories={ categories }
             setCurrentCategory={ mockSetCurrentCategory }
@@ -39,7 +40,7 @@ describe('Nav component', () => {
     });
 })
 
-describe('emijoi is visible', () => {
+describe('emoji is visible', () => {
     it('inserts emoji into the h2', () => {
         // Arrange
         const { getByLabelText } = render(<Nav 
@@ -55,7 +56,7 @@ describe('emijoi is visible', () => {
 })
 
 describe('links are visible', () => {
-    it('inserts text into the links', () => {
+    it('inserts text into the home links', () => {
         // Arrange
         const { getByTestId } = render(<Nav 
             categories={ categories }
@@ -67,5 +68,22 @@ describe('links are visible', () => {
         // Assert
         expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
         expect(getByTestId('about')).toHaveTextContent('About me');
+    });
+})
+
+describe('onClick events', () => {
+    it('calls the click handler when clicked', () => {
+        const { getByText } = render(<Nav 
+            categories={ categories }
+            setCurrentCategory={ mockSetCurrentCategory }
+            currentCategory={ mockCurrentCategory }
+            currentSelected={ mockContactSelected }
+            setCurrentSelected={ mockSetContactSelected }
+        />);
+        fireEvent.click(getByText('About me'))
+        fireEvent.click(getByText('Contact'))
+        fireEvent.click(getByText('Portraits'))
+
+        expect(mockSetContactSelected).toHaveBeenCalledTimes(3);
     });
 })
